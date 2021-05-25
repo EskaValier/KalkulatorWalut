@@ -1,8 +1,8 @@
 package com.company;
 
 public class Currency {
-    String currencyname;
-    Double rate;
+    private String currencyname;
+    private Double rate;
 
     public Currency(String currencyname, Double rate) {
         this.currencyname = currencyname;
