@@ -17,6 +17,7 @@ import java.util.Scanner;
 public class Main {
     //define path to file
     private static final String FILENAME = "kursy.xml";
+    private static ArrayList<Currency> CurrencyList = new ArrayList<Currency>();
 
     public static void main(String[] args) {
 
@@ -41,10 +42,12 @@ public class Main {
             NodeList salaryNodeList = element.getElementsByTagName("Cube");
 
             //get all currencies and rates in file
-            for(int i=0;i<32;i++){
+            for(int i=0;i<salaryNodeList.getLength();i++){
                 String currency = salaryNodeList.item(i).getAttributes().getNamedItem("currency").getTextContent();
-                String salary = salaryNodeList.item(i).getAttributes().getNamedItem("rate").getTextContent();
-                System.out.printf("1 EUR = %,.2f %s%n", Float.parseFloat(salary), currency);
+                String rate = salaryNodeList.item(i).getAttributes().getNamedItem("rate").getTextContent();
+                Currency newCurrency = new Currency(currency,Double.parseDouble(rate) );
+                CurrencyList.add(newCurrency);
+                System.out.printf("1 EUR = %,.2f %s%n", Double.parseDouble(rate), currency);
             }
         } catch (ParserConfigurationException | SAXException | IOException e) {
             e.printStackTrace();
