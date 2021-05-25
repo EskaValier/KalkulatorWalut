@@ -16,7 +16,7 @@ import java.util.ArrayList;
 public class Calculator {
     //define path to file
     private final String FILENAME = "kursy.xml";
-    private ArrayList<Currency> CurrencyList = new ArrayList<>();
+    private ArrayList<Currency> currencyList = new ArrayList<>();
 
     public Calculator() {
         loadCurrencyRateFile();
@@ -28,15 +28,15 @@ public class Calculator {
             return "Incorrect currency";
         }else {
             String result;
-            Double countedAmount = amount * CurrencyList.get(checkCurrency).getRate();
-            result = countedAmount + " " + CurrencyList.get(checkCurrency).getCurrencyname();
+            Double countedAmount = amount * currencyList.get(checkCurrency).getRate();
+            result = countedAmount + " " + currencyList.get(checkCurrency).getCurrencyname();
             return result;
         }
     }
 
     public int findIndexOfCurrency(String findCurrency){
-        for (int i=0;i<CurrencyList.size();i++){
-            if(findCurrency.equalsIgnoreCase(CurrencyList.get(i).getCurrencyname())){
+        for (int i=0;i<currencyList.size();i++){
+            if(findCurrency.equalsIgnoreCase(currencyList.get(i).getCurrencyname())){
                 return i;
             }
         }
@@ -66,7 +66,7 @@ public class Calculator {
                 String currency = salaryNodeList.item(i).getAttributes().getNamedItem("currency").getTextContent();
                 String rate = salaryNodeList.item(i).getAttributes().getNamedItem("rate").getTextContent();
                 Currency newCurrency = new Currency(currency,Double.parseDouble(rate) );
-                CurrencyList.add(newCurrency);
+                currencyList.add(newCurrency);
                 //System.out.printf("1 EUR = %,.2f %s%n", Double.parseDouble(rate), currency);
             }
         } catch (ParserConfigurationException | SAXException | IOException e) {
@@ -74,11 +74,11 @@ public class Calculator {
         }
     }
     public void writeAllCurrencies(){
-        for (int i=0;i<CurrencyList.size();i++){
+        for (int i=0;i<currencyList.size();i++){
             if(i!=0){
                 System.out.print(", ");
             }
-            System.out.print(CurrencyList.get(i).getCurrencyname());
+            System.out.print(currencyList.get(i).getCurrencyname());
         }
     }
 }
