@@ -16,6 +16,7 @@ import java.util.ArrayList;
 public class Calculator {
     //define path to file
     private final String FILENAME = "kursy.xml";
+    //define array of currencies
     private ArrayList<Currency> currencyList = new ArrayList<>();
 
     public Calculator() {
@@ -28,15 +29,22 @@ public class Calculator {
             return "Incorrect currency";
         }else {
             String result;
-            Double countedAmount = amount * currencyList.get(checkCurrency).getRate();
-            result = countedAmount + " " + currencyList.get(checkCurrency).getCurrencyname();
+            //count amount
+            double countedAmount = amount * currencyList.get(checkCurrency).getRate();
+            // round amount to 2 decimal places
+            double roundedAmount = countedAmount * 100;
+            roundedAmount = Math.round(roundedAmount);
+            roundedAmount = roundedAmount/100;
+            //creating result string
+            result = roundedAmount + " " + currencyList.get(checkCurrency).getCurrencyName();
             return result;
         }
     }
 
     public int findIndexOfCurrency(String findCurrency){
+        //looking for currency loaded to list
         for (int i=0;i<currencyList.size();i++){
-            if(findCurrency.equalsIgnoreCase(currencyList.get(i).getCurrencyname())){
+            if(findCurrency.equalsIgnoreCase(currencyList.get(i).getCurrencyName())){
                 return i;
             }
         }
@@ -73,12 +81,15 @@ public class Calculator {
             e.printStackTrace();
         }
     }
-    public void writeAllCurrencies(){
+    public String writeAllCurrencies(){
+        // write all currency that we have in xml
+        String allCurrencies = "";
         for (int i=0;i<currencyList.size();i++){
             if(i!=0){
-                System.out.print(", ");
+                allCurrencies += ", ";
             }
-            System.out.print(currencyList.get(i).getCurrencyname());
+            allCurrencies += currencyList.get(i).getCurrencyName();
         }
+        return allCurrencies;
     }
 }

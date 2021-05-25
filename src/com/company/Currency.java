@@ -1,20 +1,20 @@
 package com.company;
 
 public class Currency {
-    private String currencyname;
+    private String currencyName;
     private Double rate;
 
-    public Currency(String currencyname, Double rate) {
-        this.currencyname = currencyname;
+    public Currency(String currencyName, Double rate) {
+        this.currencyName = currencyName;
         this.rate = rate;
     }
 
-    public String getCurrencyname() {
-        return currencyname;
+    public String getCurrencyName() {
+        return currencyName;
     }
 
-    public void setCurrencyname(String currencyname) {
-        this.currencyname = currencyname;
+    public void setCurrencyName(String currencyName) {
+        this.currencyName = currencyName;
     }
 
     public Double getRate() {

@@ -10,13 +10,21 @@ public class Main {
 
     public static void main(String[] args) {
 
+        controller();
+    }
+
+    private static void controller(){
+        // manages the actions in the currency exchange program
+
         boolean run = true;
 
         while (run) {
             int choice = 0;
 
+            //main menu
             try {
-                System.out.println("Menu:\n 1 - Count exchange \n 2 - All available currencies \n 3 - End program");
+                System.out.println("Menu:\n 1 - Count exchange \n " +
+                        "2 - All available currencies \n 3 - End program");
                 choice = scannerNumber.nextInt();
             } catch (Exception InputMismatchException) {
                 System.out.print("Enter a number:");
@@ -28,7 +36,7 @@ public class Main {
                     break;
                 case 2:
                     System.out.println("All available currencies (ISO 4217 format)");
-                    calculator.writeAllCurrencies();
+                    System.out.println( calculator.writeAllCurrencies() );
                     break;
                 case 3:
                     run = false;
@@ -40,6 +48,7 @@ public class Main {
     }
 
     private static void currencyExchange(){
+        // manages the actions needed to count exchange value
         Double currencyAmount = 0.0;
         String currencyName = "";
 
@@ -57,11 +66,14 @@ public class Main {
             System.out.print("Enter a currency name:");
             scannerNumber.next();
         }
+        //trim in case unwanted white characters
+        currencyName = currencyName.trim();
 
         if(calculator.findIndexOfCurrency(currencyName)==-1){
             System.out.println("There is no chosen currency");
         }else {
-            System.out.println(currencyAmount + " EUR = " + calculator.countExchangeValue(currencyName,currencyAmount));
+            System.out.println( currencyAmount + " EUR = "
+                    + calculator.countExchangeValue( currencyName, currencyAmount ));
         }
     }
 }
