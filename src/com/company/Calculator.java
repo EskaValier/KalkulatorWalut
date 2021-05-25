@@ -15,7 +15,7 @@ import java.util.ArrayList;
 
 public class Calculator {
     //define path to file
-    private final String FILENAME = "kursy.xml";
+    private final String FILENAME = "data/kursy.xml";
     //define array of currencies
     private ArrayList<Currency> currencyList = new ArrayList<>();
 
@@ -87,6 +87,9 @@ public class Calculator {
         for (int i=0;i<currencyList.size();i++){
             if(i!=0){
                 allCurrencies += ", ";
+            }
+            if( (i%10 == 0) & (i != 0) ){
+                allCurrencies += "\n";
             }
             allCurrencies += currencyList.get(i).getCurrencyName();
         }
