@@ -67,12 +67,12 @@ public class Calculator {
             Element element = (Element) node;
             String time = element.getAttributes().getNamedItem("time").getTextContent();
             System.out.println("Date of update currency rate: " + time);
-            NodeList salaryNodeList = element.getElementsByTagName("Cube");
+            NodeList currencyRatesNodeList = element.getElementsByTagName("Cube");
 
             //get all currencies and rates from file, save it in arraylist
-            for(int i=0;i<salaryNodeList.getLength();i++){
-                String currency = salaryNodeList.item(i).getAttributes().getNamedItem("currency").getTextContent();
-                String rate = salaryNodeList.item(i).getAttributes().getNamedItem("rate").getTextContent();
+            for(int i=0;i<currencyRatesNodeList.getLength();i++){
+                String currency = currencyRatesNodeList.item(i).getAttributes().getNamedItem("currency").getTextContent();
+                String rate = currencyRatesNodeList.item(i).getAttributes().getNamedItem("rate").getTextContent();
                 Currency newCurrency = new Currency(currency,Double.parseDouble(rate) );
                 currencyList.add(newCurrency);
                 //System.out.printf("1 EUR = %,.2f %s%n", Double.parseDouble(rate), currency);
