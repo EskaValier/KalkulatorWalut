@@ -1,0 +1,3 @@
+Wyświetlenie kursu dla podanych walut i daty
+URL:
+http://localhost:8080/service/currency/exchange-rate?currencyFrom=CZK&currencyTo=EUR&date=2021-05-22
